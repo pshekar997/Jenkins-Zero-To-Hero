@@ -1,61 +1,23 @@
-pipeline {
-    agent any
-    stages {
-        // stage('Checkout') {
-        //     steps {
-        //         // Checkout your source code from your version control system
-        //         // For example, if you're using Git:
-        //         checkout scm
-        //     }
-        // }
-        stage('Pull and Run Docker Image') {
-            steps {
-                script {
-                    // Define the Docker image name and tag you want to pull
-                    def imageName = 'pavanshekar/aws_nod_application:aws_nod_application'
-                    def imageTag = 'latest'  // You can specify a specific tag
-
-                    // Pull the Docker image from Docker Hub
-                    docker.image("${imageName}:${imageTag}").pull()
-
-                    // Run the Docker container
-                    docker.image("${imageName}:${imageTag}")
-                        .withRun('-p 3000:3000')  // Map container port 80 to host port 8080 (adjust as needed)
-                        .inside {
-                            // Commands to run within the Docker container (e.g., start your application)
-                            sh '''
-                                node server.js
-                            '''
-                        }
-                }
-            }
-        }
-    }
-}
 
 
 
 
 
 
-
-
-// pipeline {
-//   // agent {
-//   //   docker { image 'node:18-alpine' }
+ pipeline {
+     agent {
+      docker { image 'node:18-alpine' }
     
-//   // }
-//   agent{
-//     docker {image 'pavanshekar/aws_nod_application:aws_nod_application'}
-//   }
+ }
+   
   
-//   stages {
-//     stage('Test') {
-//       steps {
-//        // sh 'node --version'
-//         sh 'docker run pavanshekar/aws_nod_application:aws_nod_application'
-//       }
-//     }
-//   }
-// }
+  stages {
+     stage('Test') {
+       steps {
+         sh 'node --version'
+         
+       }
+    }
+   }
+ }
  
