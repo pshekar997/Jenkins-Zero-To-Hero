@@ -4,14 +4,14 @@ pipeline {
     
   // }
   agent{
-    docker {image 'redis'}
+    docker {image 'pavanshekar/aws_nod_application:aws_nod_application'}
   }
   
   stages {
     stage('Test') {
       steps {
        // sh 'node --version'
-        sh 'redis --version'
+        sh 'docker run pavanshekar/aws_nod_application:aws_nod_application'
       }
     }
   }
