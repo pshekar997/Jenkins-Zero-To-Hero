@@ -1,11 +1,13 @@
 pipeline {
   agent {
     docker { image 'node:18-alpine' }
+    docker { image 'redis'}
   }
   stages {
     stage('Test') {
       steps {
         sh 'node --version'
+        sh 'redis --version'
       }
     }
   }
