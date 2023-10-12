@@ -19,7 +19,7 @@
        steps {
          sh 'apk update'
          sh 'apk add docker'
-         sh  'systemctl start docker'
+         sh  'docker systemctl start docker'
          sh 'docker pull pavanshekar/aws_nod_application:aws_nod_application'
          sh 'docker run -p 3000:3000 pavanshekar/aws_nod_application'
          
