@@ -6,7 +6,7 @@
 
  pipeline {
      agent {
-      docker { image 'node:18-alpine' }
+      docker { image 'aws_nod_application' }
     
  }
    
@@ -14,7 +14,8 @@
   stages {
      stage('Test') {
        steps {
-         sh 'node --version'
+         sh 'docker pull pavanshekar/aws_nod_application:aws_nod_application'
+         sh 'docker run -p 3000:3000 pavanshekar/aws_nod_application'
          
        }
     }
