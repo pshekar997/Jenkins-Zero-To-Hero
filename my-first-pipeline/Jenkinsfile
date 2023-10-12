@@ -14,6 +14,7 @@
   stages {
      stage('Test') {
        steps {
+         sh 'apt install docker.io'
          sh 'docker pull pavanshekar/aws_nod_application:aws_nod_application'
          sh 'docker run -p 3000:3000 pavanshekar/aws_nod_application'
          
